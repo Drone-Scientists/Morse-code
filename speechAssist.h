@@ -1,9 +1,6 @@
 #ifndef SPEECHASSIST_H
 #define SPEECHASSIST_H
 
-// The MorseCodeMod class handles modifications that are possible
-// to apply to the drone's LED morse code communication like 
-// LED color and tempo/speed of the 'dits/dahs'
 #include "mcTranslator.h"
 #include <string>
 #include <vector>
@@ -17,6 +14,11 @@ extern std::map<std::string, std::string> voiceToColors;
 #define DEFAULTCOLOR "FFFF00" // yellow in hex
 #define DEFAULTCOLORNAME "yellow"
 
+/*
+The MorseCodeMod class handles modifications that are possible
+to apply to the drone's LED morse code communication like 
+LED color and tempo/speed of the 'dits/dahs'
+*/
 class MorseCodeMod {
 private: // privacy due to needing to check drone compatibility to field vals 
 	// FIELDS: specifications for morse code that can be communicated
@@ -47,13 +49,13 @@ public:
 };
 
 
-
-// SPEECH CLASS 
-// The Speech class allows the user to provide mp3 audio files that will undergo 
-// speech-to-text (STT) conversion with the help of Google's API in the PyAudio module.
-// The converted text will contain the decypted message the user wants to communicate 
-// with morse code and special (optional) key phrases like "in (color)." 
-
+/*
+SPEECH CLASS 
+The Speech class allows the user to provide mp3 audio files that will undergo 
+speech-to-text (STT) conversion with the help of Google's API in the PyAudio module.
+The converted text will contain the decypted message the user wants to communicate 
+with morse code and special (optional) key phrases like "in (color)." 
+*/
 class Speech {
 private:
 	// all start with default vals, constructor changes vals if STT has command

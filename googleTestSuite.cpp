@@ -1,8 +1,8 @@
-/*
-BELOW IS THE TESTING SUITE - googleTestSuite.cpp
-- Includes code and (a lot of) comments from Testing Assignment &&
-- Additional tests added after Testing Assignment
-*/
+// BELOW IS THE TESTING SUITE - googleTestSuite.cpp
+// - I'm including only the code (and not the abundance of comments)
+// I wrote for the testing assignment, as all the comments use
+// /* *\ because there are a ton of them. So, don't want to seem
+// like I'm trying to pass them off as doc comments for the graderf
 
 #include <iostream>
 #include <gtest/gtest.h>

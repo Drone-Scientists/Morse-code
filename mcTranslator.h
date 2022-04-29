@@ -15,9 +15,10 @@ extern std::map<char, std::string> mcKey;
 // Meaning, a space in morse code = " / " equal to 7 * dit length
 
 
-
-// Message class ensures the correctness of the English and Morse Code strings,
-// even when the user changes a field's value 
+/*
+Message class ensures the correctness of the English and Morse Code strings,
+even when the user changes a field's value 
+*/
 
 class Message {
 private: // privacy to enforce correct relationship between the 2 fields, 

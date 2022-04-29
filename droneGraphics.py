@@ -2,6 +2,7 @@ from graphics import *
 import time
 
 '''
+Citation:
 Uses the graphics module created by John Zelle in Graphics.py 
 located in the same directory as this file.
 '''
@@ -65,7 +66,7 @@ goCougs = [
 ''' 
 CITATION:
 The color scheme below was created with the assistance
-of Derek Schreiner, a level 1 programmer and loyal Rams fan.
+of Derek Schreiner, a level 1 programmer and loyal LA Rams fan.
 '''
 NUMGORAMSSUPERBOWLCHAMPS2022COLORS = 2 # "The *OFFICIAL* name"
 NUMRAMSCOLORS = 2 # cute, short alias 
@@ -79,12 +80,13 @@ holidayCheer = [
 	[0, 0, 255] # blue 
 ]
 
-
-# communicates morse code, but every changes colors based on the
-# special color that is used
-# Want whole new method, so normal method isn't checking 
-# "if special" / incrementing next color all the time (would slow 
-# down performance)
+'''
+communicates morse code, but every changes colors based on the
+special color that is used
+Want whole new method, so normal method isn't checking 
+"if special" / incrementing next color all the time (would slow 
+down performance)
+'''
 def CommMorseCodeLEDSpecial(win, morsecode, special, tempo):
 	sc = 0 # sc for specialColors
 	if special == "rainbow":
@@ -149,7 +151,12 @@ def CommMorseCodeLEDSpecial(win, morsecode, special, tempo):
 
 
 
-# mc is morsecode message
+'''
+Takes in info about morse code: dits, dahs and /, tempo and color
+and draws circle w/ correct morse code timing to simulate turning
+on an LED.
+In short: communicates passed morse code message using a graphical LED
+'''
 def CommMorseCodeLED(win, morsecode, R, G, B, tempo):
 	LED = Circle(Point(250, 200), 20)
 	LED.draw(win) # draw circle on the screen
@@ -211,12 +218,12 @@ def main():
 	droneImage = Image(Point(250, 250), "drone1.png") # transparent drone png
 	droneImage.draw(win)
 
-	#CommMorseCodeLED(win, morseCode, Rdecimal, Gdecimal, Bdecimal, mcSpeeds[tempo])
+	CommMorseCodeLED(win, morseCode, Rdecimal, Gdecimal, Bdecimal, mcSpeeds[tempo])
 
 
-	# Special Example - UI special implementation is still WIP 
+	# Special Example for Demo Video - UI special implementation is still WIP 
 	# Users cant add Special messages yet, but MC logic for special is done
-	testSpecial(win) # Uncomment here 
+	# testSpecial(win) # Uncomment here 
 	
 
 main()

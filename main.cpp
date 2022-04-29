@@ -11,6 +11,8 @@ using namespace std;
 
 #define NUMMENUITEMS 10
 
+// holds all info about a single message
+// (translations, color, speed)
 struct MessageDetails {
 	Message* m;
 	MorseCodeMod* mcm;
@@ -39,6 +41,7 @@ namespace mcInfo {
 		}
 	}
 
+	// general info, then user is ready to see actual MC key the mcTranslator uses
 	void printMorseHelp() { // general info about morse code / termonology
 		cout << "<<MORSE CODE HELP>>\n" << "This application utilizes " <<
 		"the following morse code conversion laws:\n" <<
@@ -55,7 +58,8 @@ namespace mcInfo {
 		mcInfo::printMCKey(mcKey);
 	}
 
-	void printWelcomeMessage() { // give user general reason for this application
+	// give user general reason for this application
+	void printWelcomeMessage() {
 		cout << "-- DRONE MORSE CODE APPLICATION --\n\n" <<
 		"Welcome! This application is used to aid in the process of\n" <<
 		"communicating morse code via an attached LED on a drone. Follow\n" <<
@@ -64,7 +68,25 @@ namespace mcInfo {
 	}
 }
 
+namespace speechToTextInfo {
+	void printSpeechToTextInfo() {
+		cout << "\n\nSPEECH TO TEXT INFO:\n";
+		cout << "To add your Message via speech, speak into your \n" <<
+		"microphone when prompted. You may use (optional) voice commands\n" <<
+		"to set LED color and morse code speed (1 being the slowest and\n" <<
+		std::to_string(NUMLEDSPEEDS) << " being the fastest." << endl;
+	}
 
+	void printSpeechToTextExamples() {
+		cout << "\nSpeech To Text Examples (w/ and w/o commands): \n" <<
+		"hello world\nhello world in speed four\nhello world in color red\n" <<
+		"hello world in speed four and in color red\n" <<
+		"** Note: must use words 'in speed' & 'in color' for commands\n" <<
+		"** Note: color name must be available (menu option 8 to add a " <<
+		"color for STT)\n** Note: must specify speed before color if using " <<
+		"both commands\n" << endl;
+	}
+};
 
 
 namespace userHandler {
@@ -340,27 +362,6 @@ namespace userHandler {
 
 
 };
-
-namespace speechToTextInfo {
-	void printSpeechToTextInfo() {
-		cout << "\n\nSPEECH TO TEXT INFO:\n";
-		cout << "To add your Message via speech, speak into your \n" <<
-		"microphone when prompted. You may use (optional) voice commands\n" <<
-		"to set LED color and morse code speed (1 being the slowest and\n" <<
-		std::to_string(NUMLEDSPEEDS) << " being the fastest." << endl;
-	}
-
-	void printSpeechToTextExamples() {
-		cout << "\nSpeech To Text Examples (w/ and w/o commands): \n" <<
-		"hello world\nhello world in speed four\nhello world in color red\n" <<
-		"hello world in speed four and in color red\n" <<
-		"** Note: must use words 'in speed' & 'in color' for commands\n" <<
-		"** Note: color name must be available (menu option 8 to add a " <<
-		"color for STT)\n** Note: must specify speed before color if using " <<
-		"both commands\n" << endl;
-	}
-};
-
 
 
 

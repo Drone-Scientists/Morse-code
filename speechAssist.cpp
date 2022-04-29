@@ -129,15 +129,12 @@ bool MorseCodeMod::addClrRecog(string const& clrName, string const& rgbHex) {
 
 
 
-// SPEECH CLASS 
+// SPEECH CLASS (examples)
 // state speed command first
 
 // "hello world in speed five and in color red"
 // "hello world in speed five"
 // "hello world in color navy blue"
-
-// So, if find "in color" then rest of string is the color name
-// If find "in speed", then next word is speed (five NOT 5)
 
 // Constructor that prompts user for STT
 Speech::Speech() { 
@@ -194,11 +191,12 @@ string Speech::voiceToText() {
 	return spokenMessage;
 
 }
-
-// "... in color navy blue"
-// checks if there is a color command in the text, if there is 
-// if removes it from the command and changes color field value, returns
-// the command
+/*
+"... in color navy blue"
+checks if there is a color command in the text, if there is 
+if removes it from the command and changes color field value, returns
+the command
+*/
 string Speech::colorInText(string text) { 
 	vector<string> words = splitStringBySpaces(text); // words in text
 	string textNoColorCommand = words[0];
@@ -242,7 +240,7 @@ string Speech::colorInText(string text) {
 	return textNoColorCommand;
 }
 
-// Checks if 
+// Same as colorInText, but now checking if user specified speed/tempo
 string Speech::speedInText(string text) {
 	vector<string> words = splitStringBySpaces(text); // words in text
 	string textNoSpeedCommand = words[0];
