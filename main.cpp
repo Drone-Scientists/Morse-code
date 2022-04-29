@@ -9,7 +9,7 @@ using namespace std;
 #include "mcTranslator.h"
 #include "speechAssist.h"
 
-#define NUMMENUITEMS 9
+#define NUMMENUITEMS 10
 
 struct MessageDetails {
 	Message* m;
@@ -39,7 +39,7 @@ namespace mcInfo {
 		}
 	}
 
-	void printMorseHelp() {
+	void printMorseHelp() { // general info about morse code / termonology
 		cout << "<<MORSE CODE HELP>>\n" << "This application utilizes " <<
 		"the following morse code conversion laws:\n" <<
 		"1) '.' is a 'dit' -> a short LED flash\n" <<
@@ -55,7 +55,7 @@ namespace mcInfo {
 		mcInfo::printMCKey(mcKey);
 	}
 
-	void printWelcomeMessage() {
+	void printWelcomeMessage() { // give user general reason for this application
 		cout << "-- DRONE MORSE CODE APPLICATION --\n\n" <<
 		"Welcome! This application is used to aid in the process of\n" <<
 		"communicating morse code via an attached LED on a drone. Follow\n" <<
@@ -71,15 +71,16 @@ namespace userHandler {
 
 	void printMenu() {
 		cout << "\n[ - - - M E N U - - - ]\n\n" <<
-		"(1) Add a Message\n" << // 2 routes, have message or have MC 
-		"(2) Add a Message by speaking into your microphone\n" <<
-		"(3) Print Saved Messages\n" << 
-		"(4) Send Message to Drone\n" << 
-		"(5) Delete Messages\n" <<
-		"(6) Print Morse Code Key\n" <<
-		"(7) Print Color options for Speech to Text (STT)\n" <<
-		"(8) Add Colors for Speech to Text (STT)\n" <<
-		"(9) Exit Program\n";
+		"(1)  Add a Message\n" << // 2 routes, have message or have MC 
+		"(2)  Add a Message by speaking into your microphone\n" <<
+		"(3)  Print Saved Messages\n" << 
+		"(4)  Send Message to Drone\n" << 
+		"(5)  Delete Messages\n" <<
+		"(6)  Print Morse Code Key\n" <<
+		"(7)  Print Color options for Speech to Text (STT)\n" <<
+		"(8)  Add Colors for Speech to Text (STT)\n" <<
+		"(9)  Add Message using a Special Color Scheme\n" <<
+		"(10) Exit Program\n";
 
 		cout << "\nWhat would you like to do? (Type #)" << endl;
 	}
@@ -132,7 +133,7 @@ namespace userHandler {
 		int numResp;
 		cin >> numResp;
 
-		while (cin.fail() || !(numResp == 1 || numResp == 2)) {
+		while (cin.fail() || !(numResp == 1 || numResp == 2)) { // error catch
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
 			cout << "Invalid input. Please enter '1' or '2'" << endl;
@@ -188,7 +189,7 @@ namespace userHandler {
 			cin >> speed;
 		}
 
-		while (1) {
+		while (1) { // reloop if problem making the MCM obj
 			try {
 				if (rgbColor.size() == 0) {
 					if (speed == 0) {
@@ -222,6 +223,7 @@ namespace userHandler {
 		int delPick;
 		cout << "Enter the # of the Message you want to delete." << endl;
 		cin >> delPick;
+
 		while (cin.fail() || (delPick < 1 || delPick > numMessages)) {
 			cin.clear();
 			cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
@@ -328,6 +330,15 @@ namespace userHandler {
 		}
 	}
 
+	void addSpecialMessage(vector<MessageDetails>& vect) { 
+		cout << "The following are the Special Color schemes you can\n" <<
+		"choose from:\n" << "(1) Rainbow\n(2) Patriotic\n(3) Cougars\n" <<
+		"(4) NFL Rams\n(5) Holiday Season\n" << endl;
+
+		cout << "Successfully added your Special Message!\n";
+	}
+
+
 };
 
 namespace speechToTextInfo {
@@ -417,9 +428,15 @@ int main() {
 			mcInfo::printTTSColors(voiceToColors);
 			userHandler::addColorHandler();
 
-		} else { // 9, delete all objects in vector vect
+		} else if (menuPick == 9) {
+			while (1) {
+				userHandler::addSpecialMessage(vect);
+				if (userHandler::backToMenu()) break;
+			}
+
+		} else { // 10, delete all objects in vector vect
 			userHandler::exitHandler(vect);
-		}
+		} // if not 1-#menu options, already gets error-checked, so else
 	}
 
 	return 0;

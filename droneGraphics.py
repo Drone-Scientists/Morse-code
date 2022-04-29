@@ -101,7 +101,7 @@ def CommMorseCodeLEDSpecial(win, morsecode, special, tempo):
 		print("Incorrect special LED flag")
 		return 
 
-	numColors = len(specialColors)
+	numColors = len(sc)
 
 	LED = Circle(Point(250, 200), 20)
 	LED.draw(win)
@@ -151,15 +151,8 @@ def CommMorseCodeLEDSpecial(win, morsecode, special, tempo):
 
 # mc is morsecode message
 def CommMorseCodeLED(win, morsecode, R, G, B, tempo):
-	'''
-	win = GraphWin("Drone Window", WINDOW_WIDTH, WINDOW_HEIGHT)
-	win.setBackground(color_rgb(skyBlue[0], skyBlue[1], skyBlue[2])) # sky
-	droneImage = Image(Point(250, 250), "drone1.png") # transparent drone png
-	droneImage.draw(win)
-	'''
 	LED = Circle(Point(250, 200), 20)
-	LED.draw(win)
-
+	LED.draw(win) # draw circle on the screen
 	UNIT = tempo
 
 	# <.... . .-.. .-.. --- / .-- --- .-. .-.. -.. > has trailing space
@@ -192,6 +185,10 @@ def CommMorseCodeLED(win, morsecode, R, G, B, tempo):
 	print("Morse Code Finished! Bye now.")
 	win.close()
 
+def testSpecial(win):
+	hello = ".... . .-.. .-.. --- "
+	special = "rainbow" # "rainbow", "patriotic", "cougars", "rams", "holidays"
+	CommMorseCodeLEDSpecial(win, hello, special, mcSpeeds["5"])
 
 def main():
 	# First, grab morse code info from message.txt
@@ -214,7 +211,13 @@ def main():
 	droneImage = Image(Point(250, 250), "drone1.png") # transparent drone png
 	droneImage.draw(win)
 
-	CommMorseCodeLED(win, morseCode, Rdecimal, Gdecimal, Bdecimal, mcSpeeds[tempo])
+	#CommMorseCodeLED(win, morseCode, Rdecimal, Gdecimal, Bdecimal, mcSpeeds[tempo])
+
+
+	# Special Example - UI special implementation is still WIP 
+	# Users cant add Special messages yet, but MC logic for special is done
+	testSpecial(win) # Uncomment here 
+	
 
 main()
 
